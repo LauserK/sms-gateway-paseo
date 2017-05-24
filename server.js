@@ -9,23 +9,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 function sendMessage(req, res){
 	var exec    = require('child_process').exec;		
-	var number  = req.query.num;
+	var number  = req.query.number;
 	var message = req.query.message;
 
 	if (number == null || number == "") {
-		res.send("Number is empty!")
+		res.send("Number is empty!");
+		return false;
 	}
 
 	if (message == null || message == "") {
-		res.send("Message is empty!")	
+		res.send("Message is empty!");
+		return false;
 	}
 
-	var cmd     = 'asterisk -rx "gsm send sms 2 ' + number + ' "' + message + '""';
+	var cmd = 'asterisk -rx "gsm send sms 2 ' + number + ' "' + message + '""';
 
 	exec(cmd, function(error, stdout, stderr) {
 		console.log("Error: " + error);
 		console.log("stdout: " + stdout);
 		console.log("stderr: " + stderr);
+		console.log(cmd);
 	});
 	res.send("Message send!");
 }
