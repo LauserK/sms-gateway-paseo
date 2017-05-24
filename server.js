@@ -11,6 +11,15 @@ function sendMessage(req, res){
 	var exec    = require('child_process').exec;		
 	var number  = req.query.num;
 	var message = req.query.message;
+
+	if (number == null || number == "") {
+		res.send("Number is empty!")
+	}
+
+	if (message == null || message == "") {
+		res.send("Message is empty!")	
+	}
+
 	var cmd     = 'asterisk -rx "gsm send sms 2 ' + number + ' "' + message + '""';
 
 	exec(cmd, function(error, stdout, stderr) {
@@ -18,7 +27,7 @@ function sendMessage(req, res){
 		console.log("stdout: " + stdout);
 		console.log("stderr: " + stderr);
 	});
-	res.send("Mensaje enviado!");
+	res.send("Message send!");
 }
 
 /* Routers */
