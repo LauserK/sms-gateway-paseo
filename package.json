@@ -1,0 +1,12 @@
+{
+  "name": "gateway-sms-paseo",
+  "version": "1.0.0",
+  "description": "Send sms with a simple url using asterisk",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Kildare Lauser",
+  "license": "ISC"
+}
