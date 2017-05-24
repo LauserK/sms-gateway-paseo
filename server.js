@@ -30,7 +30,7 @@ router.get('/', function(req, res) {
 
 router.get('/sms', sendMessage);
 
-app.use('/api/v1', router);
+app.use('/api', router);
 
 app.listen(9000, function() {
 	console.log("SMS Gateway running on http://10.10.2.200:9000");
