@@ -22,7 +22,9 @@ function sendMessage(req, res){
 		return false;
 	}
 
-	var cmd = 'asterisk -rx "gsm send sms 2 ' + number + ' "' + message + '""';
+	var cmd_pre  = "asterisk -rx 'gsm send sms 2 " + number + " ";
+	var cmd_post = '"'+message+'"' + "'";
+	var cmd = cmd_pre + cmd_post;
 
 	exec(cmd, function(error, stdout, stderr) {
 		console.log("Error: " + error);
