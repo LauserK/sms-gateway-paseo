@@ -17,6 +17,21 @@ function sendMessage(req, res){
 		return false;
 	}
 
+	if (number.length < 11) {
+		res.send("Number is incorrect. Must have be like this: 04120000000");
+		return false;
+	}
+
+	operadora = number.substring(0, 4);
+	if (operadora != "0414" && operadora != "0424" && operadora != "0412" && operadora != "0416" && operadora != "0426") {
+		res.send("The phone dealer is incorrect");
+		return false;
+	} else if (number.substring(0,2) == "02") {
+		res.send("The number cant be Landline");
+		return false;
+	}
+
+
 	if (message == null || message == "") {
 		res.send("Message is empty!");
 		return false;
