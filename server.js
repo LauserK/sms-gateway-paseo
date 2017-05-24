@@ -1,12 +1,9 @@
 var express = require("express");
 var bodyParser  = require("body-parser");
-var methodOverride = require("method-override");
 
 /* Config Express */
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(methodOverride());
 
 /* Send message handler */
 
@@ -21,10 +18,15 @@ function sendMessage(req, res){
 		console.log("stdout: " + stdout);
 		console.log("stderr: " + stderr);
 	});
+	res.send("Mensaje enviado!");
 }
 
 /* Routers */
 var router = express.Router();
+
+router.get('/', function(req, res) {
+   res.send("Welcome to SMS Gateway API");   
+});
 
 router.get('/sms', sendMessage);
 
